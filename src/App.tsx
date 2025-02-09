@@ -2,6 +2,7 @@ import "./App.css";
 import Stack from "./components/Stack";
 import TextPressure from "./components/TextPressure";
 import Aurora from "./components/Aurora";
+import ShinyText from "./components/ShinyText";
 
 function App() {
   const images = [
@@ -47,14 +48,22 @@ function App() {
               />
             </div>
           </div>
-          <div className="flex justify-center items-center relative">
+          <div className="flex justify-center items-center relative flex-col gap-6">
             <Stack
               randomRotation={true}
               sensitivity={180}
-              sendToBackOnClick={false}
+              sendToBackOnClick={true}
               cardDimensions={{ width: 300, height: 300 }}
               cardsData={images}
             />
+            <button className="mt-4 bg-black text-black py-2 px-4 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105">
+              <ShinyText
+              text="Click me!"
+              disabled={false}
+              speed={3}
+              className="custom-class"
+              />
+            </button>
           </div>
         </div>
       </div>
