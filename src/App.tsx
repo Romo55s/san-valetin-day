@@ -6,26 +6,57 @@ import Aurora from "./components/Aurora";
 import ShinyText from "./components/ShinyText";
 import TicTacToe from "./game-components/TicTacToe";
 import CharacterSelection from "./game-components/CharacterSelection";
+import { useState, useEffect } from 'react';
+
+import picture1 from '/assets/pictures-together/picture1.jpg';
+import picture2 from '/assets/pictures-together/picture2.jpg';
+import picture3 from '/assets/pictures-together/picture3.jpg';
+import picture4 from '/assets/pictures-together/picture4.jpg';
+import picture5 from '/assets/pictures-together/picture5.jpg';
+import picture6 from '/assets/pictures-together/picture6.jpg';
+import picture7 from '/assets/pictures-together/picture7.jpg';
+import picture8 from '/assets/pictures-together/picture8.jpg';
+import picture9 from '/assets/pictures-together/picture9.jpg';
+import picture10 from '/assets/pictures-together/picture10.jpg';
+import picture11 from '/assets/pictures-together/picture11.jpg';
+import picture12 from '/assets/pictures-together/picture12.jpg';
+import picture13 from '/assets/pictures-together/picture13.jpg';
+import picture14 from '/assets/pictures-together/picture14.jpg';
+import picture15 from '/assets/pictures-together/picture15.jpg';
+import picture16 from '/assets/pictures-together/picture16.jpg';
+import picture17 from '/assets/pictures-together/picture17.jpg';
+
+const images = [
+  { id: 1, img: picture1 },
+  { id: 2, img: picture2 },
+  { id: 3, img: picture3 },
+  { id: 4, img: picture4 },
+  { id: 5, img: picture5 },
+  { id: 6, img: picture6 },
+  { id: 7, img: picture7 },
+  { id: 8, img: picture8 },
+  { id: 9, img: picture9 },
+  { id: 10, img: picture10 },
+  { id: 11, img: picture11 },
+  { id: 12, img: picture12 },
+  { id: 13, img: picture13 },
+  { id: 14, img: picture14 },
+  { id: 15, img: picture15 },
+  { id: 16, img: picture16 },
+  { id: 17, img: picture17 },
+];
+
+const shuffleArray = <T,>(array: T[]): T[] => {
+  return array.sort(() => Math.random() - 0.5);
+};
 
 function Home() {
-  const images = [
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format",
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format",
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format",
-    },
-    {
-      id: 4,
-      img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format",
-    },
-  ];
+  const [randomImages, setRandomImages] = useState(images);
+
+  useEffect(() => {
+    const shuffledImages = shuffleArray(images);
+    setRandomImages(shuffledImages.slice(0, 4)); // Select the first 4 images
+  }, []);
 
   const navigate = useNavigate();
 
@@ -55,7 +86,7 @@ function Home() {
             sensitivity={180}
             sendToBackOnClick={true}
             cardDimensions={{ width: 300, height: 300 }}
-            cardsData={images}
+            cardsData={randomImages}
           />
           <button
             className="mt-4 bg-black text-black py-2 px-4 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105"

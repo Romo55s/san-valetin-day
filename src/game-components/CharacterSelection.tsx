@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import tony1 from '/assets/tony-stickers/b1526800-622d-45e5-ae4c-ba4d856e7cc0.webp';
-import tony2 from '/assets/tony-stickers/6d4fd6f5-487d-447b-bccc-48a5884845b0.webp';
-import mariana1 from '/assets/mariana-stickers/85264251-6945-4308-9ede-990ba3f8e7dc.webp';
-import mariana2 from '/assets/mariana-stickers/58ac9e6f-b558-45e8-a100-51fa7bcf8f3d.webp';
-import mariana3 from '/assets/mariana-stickers/180b31fc-78f1-48e0-90d3-32d02fe21a31.webp';
-import mariana4 from '/assets/mariana-stickers/0311a4d3-20bb-47dd-918c-867cd8d14ea9.webp';
-import mariana5 from '/assets/mariana-stickers/85264251-6945-4308-9ede-990ba3f8e7dc.webp';
+import tony1 from '/assets/tony-stickers/tony1.webp';
+import tony2 from '/assets/tony-stickers/tony2.webp';
+import tony3 from '/assets/tony-stickers/tony3.webp';
+import tony4 from '/assets/tony-stickers/tony4.webp';
+import tony5 from '/assets/tony-stickers/tony5.webp';
+import tony6 from '/assets/tony-stickers/tony6.webp';
+import mariana1 from '/assets/mariana-stickers/mariana1.webp';
+import mariana2 from '/assets/mariana-stickers/mariana2.webp';
+import mariana3 from '/assets/mariana-stickers/mariana3.webp';
+import mariana4 from '/assets/mariana-stickers/mariana4.webp';
+import mariana5 from '/assets/mariana-stickers/mariana5.webp';
+import mariana6 from '/assets/mariana-stickers/mariana6.webp';
+import mariana7 from '/assets/mariana-stickers/mariana7.webp';
 import { useCharacter } from '../context/CharacterContext';
 
 const tony_characters = [
   { id: 'character1', src: tony1 },
   { id: 'character2', src: tony2 },
+  { id: 'character3', src: tony3 },
+  { id: 'character4', src: tony4 },
+  { id: 'character5', src: tony5 },
+  { id: 'character6', src: tony6 },
 ];
 
 const mariana_characters = [
@@ -20,13 +30,26 @@ const mariana_characters = [
   { id: 'character3', src: mariana3 },
   { id: 'character4', src: mariana4 },
   { id: 'character5', src: mariana5 },
+  { id: 'character6', src: mariana6 },
+  { id: 'character7', src: mariana7 },
 ];
 
+const shuffleArray = <T,>(array: T[]): T[] => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
 const CharacterSelection: React.FC = () => {
+  const [shuffledTonyCharacters, setShuffledTonyCharacters] = useState(tony_characters);
+  const [shuffledMarianaCharacters, setShuffledMarianaCharacters] = useState(mariana_characters);
   const [selectedCharacter1, setSelectedCharacter1] = useState<string | null>(null);
   const [selectedCharacter2, setSelectedCharacter2] = useState<string | null>(null);
   const navigate = useNavigate();
   const { setCharacter1, setCharacter2 } = useCharacter();
+
+  useEffect(() => {
+    setShuffledTonyCharacters(shuffleArray(tony_characters));
+    setShuffledMarianaCharacters(shuffleArray(mariana_characters));
+  }, []);
 
   const handleSelectCharacter = (player: number, characterSrc: string) => {
     if (player === 1) {
@@ -47,25 +70,25 @@ const CharacterSelection: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <h2 className="text-white text-2xl mb-4">Tony's</h2>
-      <div className="flex gap-4 mb-8">
-        {tony_characters.map((character) => (
+      <div className="flex gap-4 mb-8 overflow-x-auto">
+        {shuffledTonyCharacters.map((character) => (
           <img
             key={character.id}
             src={character.src}
             alt={character.id}
-            className={`w-16 h-16 cursor-pointer ${selectedCharacter1 === character.src ? 'border-4 border-blue-500' : ''}`}
+            className={`w-32 h-32 cursor-pointer transform transition-transform duration-300 hover:scale-102 rounded-full ${selectedCharacter1 === character.src ? 'border-4 border-blue-500' : ''}`}
             onClick={() => handleSelectCharacter(1, character.src)}
           />
         ))}
       </div>
       <h2 className="text-white text-2xl mb-4">Mariana's</h2>
-      <div className="flex gap-4 mb-8">
-        {mariana_characters.map((character) => (
+      <div className="flex gap-4 mb-8 overflow-x-auto">
+        {shuffledMarianaCharacters.map((character) => (
           <img
             key={character.id}
             src={character.src}
             alt={character.id}
-            className={`w-16 h-16 cursor-pointer ${selectedCharacter2 === character.src ? 'border-4 border-red-500' : ''}`}
+            className={`w-32 h-32 cursor-pointer transform transition-transform duration-300 hover:scale-102 rounded-full ${selectedCharacter2 === character.src ? 'border-4 border-red-500' : ''}`}
             onClick={() => handleSelectCharacter(2, character.src)}
           />
         ))}
