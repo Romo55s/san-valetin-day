@@ -5,6 +5,7 @@ import TextPressure from "./components/TextPressure";
 import Aurora from "./components/Aurora";
 import ShinyText from "./components/ShinyText";
 import TicTacToe from "./game-components/TicTacToe";
+import CharacterSelection from "./game-components/CharacterSelection";
 
 function Home() {
   const images = [
@@ -58,10 +59,10 @@ function Home() {
           />
           <button
             className="mt-4 bg-black text-black py-2 px-4 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105"
-            onClick={() => navigate('/tic-tac-toe')}
+            onClick={() => navigate('/character-selection')}
           >
             <ShinyText
-              text="Click me!"
+              text="Click!"
               disabled={false}
               speed={3}
               className="custom-class"
@@ -81,6 +82,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/character-selection" element={<CharacterSelection />} />
         <Route path="/tic-tac-toe" element={<TicTacToe />} />
       </Routes>
     </>
