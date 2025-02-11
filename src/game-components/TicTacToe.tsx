@@ -103,7 +103,7 @@ const TicTacToe: React.FC = () => {
       </div>
       {(winner || isDraw) && (
         <button
-          className="mt-4 bg-black text-white py-2 px-4 rounded-lg"
+          className="mt-4 bg-black text-gray-600 py-2 px-4 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105 hover:text-white active:text-white"
           onClick={handleRestart}
         >
           Restart Game
