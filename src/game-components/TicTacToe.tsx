@@ -80,37 +80,37 @@ const TicTacToe: React.FC = () => {
     : `Turn: ${isXNext ? "Tony" : "Mariana"}`;
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="text-white text-2xl mb-4">{status}</div>
+    <div className="flex flex-col items-center justify-center h-full p-4">
+      <div className="text-white text-2xl md:text-4xl font-bold mb-4">{status}</div>
       <div className="grid grid-cols-3 gap-2">
         {board.map((value, index) => (
-          <button
+            <button
             key={index}
-            className={`w-32 h-32 lg:w-64 lg:h-64 bg-gray-800 text-white text-2xl flex items-center justify-center ${
+            className={`w-24 h-24 md:w-32 md:h-32 lg:w-64 lg:h-64 bg-gray-800 text-white text-2xl flex items-center justify-center cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105 ${
               winningLine && winningLine.includes(index) ? "animate-bounce" : ""
             }`}
             onClick={() => handleClick(index)}
-          >
+            >
             {value && (
               <img
-                src={value === "X" ? character1 : character2}
-                alt={value}
-                className="w-full h-full rounded-full"
+              src={value === "X" ? character1 : character2}
+              alt={value}
+              className="w-full h-full rounded-full"
               />
             )}
-          </button>
+            </button>
         ))}
       </div>
       {(winner || isDraw) && (
         <button
-          className="mt-4 bg-black text-gray-600 py-2 px-4 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105 hover:text-white active:text-white"
+          className="mt-4 bg-black text-gray-600 py-2 px-4 md:py-4 md:px-8 rounded-lg cursor-pointer shiny-background border-gray-600 border-2 transition duration-300 ease-in-out transform hover:bg-rose-800 hover:scale-105 active:bg-rose-800 active:scale-105 hover:text-white active:text-white"
           onClick={handleRestart}
         >
           Restart Game
         </button>
       )}
 
-      <Modal isOpen={isModalOpen} onClose={handleRestart}>
+      <Modal isOpen={isModalOpen} onClose={handleRestart} nextPage="/title">
         <div className="flex flex-col items-center">
           <DecryptedText
             text={`Winner: ${winner === "X" ? "Tony" : "Mariana"}`}
@@ -123,7 +123,7 @@ const TicTacToe: React.FC = () => {
           <img
             src={winner === "X" ? character1 : character2}
             alt="Winner"
-            className="w-32 h-32 rounded-full mt-4"
+            className="w-24 h-24 md:w-32 md:h-32 rounded-full mt-4"
           />
         </div>
       </Modal>

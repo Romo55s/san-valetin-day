@@ -7,7 +7,6 @@ import ShinyText from "./components/ShinyText";
 import TicTacToe from "./game-components/TicTacToe";
 import CharacterSelection from "./game-components/CharacterSelection";
 import { useState, useEffect } from 'react';
-
 import picture1 from '/assets/pictures-together/picture1.jpg';
 import picture2 from '/assets/pictures-together/picture2.jpg';
 import picture3 from '/assets/pictures-together/picture3.jpg';
@@ -25,6 +24,13 @@ import picture14 from '/assets/pictures-together/picture14.jpg';
 import picture15 from '/assets/pictures-together/picture15.jpg';
 import picture16 from '/assets/pictures-together/picture16.jpg';
 import picture17 from '/assets/pictures-together/picture17.jpg';
+import picture20 from '/assets/pictures-together/picture20.jpg';
+import picture21 from '/assets/pictures-together/picture21.jpg';
+import picture22 from '/assets/pictures-together/picture22.jpg';
+import picture23 from '/assets/pictures-together/picture23.jpg';
+import picture24 from '/assets/pictures-together/picture24.jpg';
+import TitlePage from './pages/TitlePage';
+import NextPage from './pages/NextPage'; // Import the new NextPage component
 
 const images = [
   { id: 1, img: picture1 },
@@ -44,6 +50,11 @@ const images = [
   { id: 15, img: picture15 },
   { id: 16, img: picture16 },
   { id: 17, img: picture17 },
+  { id: 20, img: picture20 },
+  { id: 21, img: picture21 },
+  { id: 22, img: picture22 },
+  { id: 23, img: picture23 },
+  { id: 24, img: picture24 },
 ];
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -64,7 +75,7 @@ function Home() {
     <div className="content flex justify-center items-center">
       <div className="container flex flex-col gap-10 text-center p-4 md:p-10">
         <div>
-          <div className="relative h-12 md:h-48 lg:h-10 w-full max-w-4xl mx-auto">
+          <div className="relative h-12 md:h-48 lg:h-12 w-full max-w-4xl mx-auto">
             <TextPressure
               text="Happy Valentines Day!"
               flex={true}
@@ -115,6 +126,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/character-selection" element={<CharacterSelection />} />
         <Route path="/tic-tac-toe" element={<TicTacToe />} />
+        <Route path="/title" element={<TitlePage />} />
+        <Route path="/next-page" element={<NextPage />} /> {/* Add the new route */}
       </Routes>
     </>
   );
